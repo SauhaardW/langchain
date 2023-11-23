@@ -1,7 +1,6 @@
 """Integration test for Stack Exchange."""
 from langchain.utilities.stackexchange import StackExchangeAPIWrapper
 
-
 def test_call() -> None:
     """Test that call runs."""
     stackexchange = StackExchangeAPIWrapper()
