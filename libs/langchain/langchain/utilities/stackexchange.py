@@ -15,7 +15,7 @@ class StackExchangeAPIWrapper(BaseModel):
             values["stackapi_client"] = StackAPI("stackoverflow")
         except ImportError:
             raise ImportError(
-                "The 'stackapi' Python package is not installed. "
+                "The 'stfackapi' Python package is not installed. "
                 "Please install it with `pip install stackapi`."
             )
         return values
