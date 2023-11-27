@@ -175,7 +175,8 @@ def _import_spark_sql() -> Any:
 
     return SparkSQL
 
-def _import_stackapi() -> Any:
+
+def _import_stackexchange() -> Any:
     from langchain.utilities.stackexchange import StackExchangeAPIWrapper
 
     return StackExchangeAPIWrapper
@@ -275,7 +276,7 @@ def __getattr__(name: str) -> Any:
     elif name == "SparkSQL":
         return _import_spark_sql()
     elif name == "StackExchangeAPIWrapper":
-        return _import_stackapi()
+        return _import_stackexchange()
     elif name == "SQLDatabase":
         return _import_sql_database()
     elif name == "TensorflowDatasets":

@@ -1,6 +1,8 @@
 import html
 from typing import Any, Dict, Optional
+
 from langchain.pydantic_v1 import BaseModel, Extra, root_validator
+
 
 class StackExchangeAPIWrapper(BaseModel):
     """Wrapper for Stack Exchange API."""
@@ -12,6 +14,7 @@ class StackExchangeAPIWrapper(BaseModel):
         """Validate that the required Python package exists."""
         try:
             from stackapi import StackAPI
+
             values["stackapi_client"] = StackAPI("stackoverflow")
         except ImportError:
             raise ImportError(
@@ -23,14 +26,14 @@ class StackExchangeAPIWrapper(BaseModel):
     def run(self, title: str) -> str:
         """Run query through StackExchange API and parse results."""
         SITE = self.stackapi_client
-        output = SITE.fetch('search/excerpts', title=title)
+        output = SITE.fetch("search/excerpts", title=title)
 
         result_text = ""
-        for ans in output['items']:
-            if ans['item_type'] == 'question':
+        for ans in output["items"]:
+            if ans["item_type"] == "question":
                 result_text += f"Title: {ans['title']}\n"
-                if ans['answer_count'] > 0:
-                    index = output['items'].index(ans)
+                if ans["answer_count"] > 0:
+                    index = output["items"].index(ans)
                     result_text += f"Answer: {html.unescape(output['items'][index + 1]['excerpt'])}\n"
                 result_text += "\n"
 
